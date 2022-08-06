@@ -6,6 +6,10 @@ O trabalho tem como intuito encontrar o valor de x para a função f(x) = x*x - 
 será o valor máximo.
 
 '''
+
+
+
+
 populacao = []
 mutacao = 0.01
 crossover = 0.7

@@ -12,8 +12,9 @@ class GeneticAlgorithm:
         self.x_min = x_min
         self.x_max = x_max
         self.num_indiv = num_indiv
-
-        self.populacao = []
+        
+        self.populacao["POP"] = []
+        self.populacao["AVAL"] = [0]*num_indiv
 
 
     def gera_populacao_inicial(self):

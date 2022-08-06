@@ -7,16 +7,16 @@ será o valor máximo.
 
 '''
 
+import GeneticAlgorithm
+
+algoritmo = GeneticAlgorithm.GeneticAlgorithm(0.01, 0.7, 5, -10, 10, 4)
 
 
 
 populacao = []
-mutacao = 0.01
-crossover = 0.7
-geracoes = 5
-x_min = -10
-x_max = 10
 num_individuos = 4
+
+
 
 
 

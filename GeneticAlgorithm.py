@@ -13,8 +13,6 @@ class GeneticAlgorithm:
         self.x_max = x_max
         self.num_indiv = num_indiv
         
-        self.populacao = []
-        
         self.populacao = {"CROMO": self.gera_populacao_inicial(), "AVAL": [0]*num_indiv}
 
 

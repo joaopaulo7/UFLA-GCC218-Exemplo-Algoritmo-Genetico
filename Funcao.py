@@ -11,7 +11,7 @@ import GeneticAlgorithm
 
 algoritmo = GeneticAlgorithm.GeneticAlgorithm(0.01, 0.7, 5, -10, 10, 4)
 
-print(algoritmo.populacao["CROMO"])
+print(algoritmo.populacao["AVAL"])
 
 
 

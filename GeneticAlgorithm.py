@@ -8,7 +8,7 @@ class GeneticAlgorithm:
 
         self.taxa_mut = mutacao
         self.taxa_cross = crossover
-        self.geracoes = geracoes
+        self.geracao = geracoes
         self.x_min = x_min
         self.x_max = x_max
         self.num_indiv = num_indiv
@@ -86,7 +86,7 @@ class GeneticAlgorithm:
         primeira_parte_1 = indiv_um[:corte]
         segunda_parte_1 = indv_dois[corte:]
         primeira_parte_2 = indiv_um[:corte]
-        segunda_parte_2 = indv_dois[:corte]
+        segunda_parte_2 = indv_dois[corte:]
 
         filho_1 = primeira_parte_1 + segunda_parte_1
         filho_2 = primeira_parte_2 + segunda_parte_2
@@ -98,4 +98,18 @@ class GeneticAlgorithm:
     def mutacao(indiv, tam_bit):
         gene = random.choice(range(tam_bit))
         indiv[gene] = 1 if indiv[gene] == 0 else 1 
+
+
+    def geracoes(self):
+        historico_avaliacoes = []
+        for i in range(self.geracao):
+            self.gera_populacao()
+            self.avalia_toda_pop()
+            print(self.populacao["AVAL"])
+            historico_avaliacoes.append(self.populacao)
+
+        return historico_avaliacoes
+    
+
+    
 

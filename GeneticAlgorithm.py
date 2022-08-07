@@ -1,4 +1,5 @@
 import random
+import copy
 
 inft = 1000000
 
@@ -102,11 +103,12 @@ class GeneticAlgorithm:
 
     def geracoes(self):
         historico_avaliacoes = []
+        historico_avaliacoes.append(copy.deepcopy(self.populacao))
         for i in range(self.geracao):
-            self.gera_populacao()
             self.avalia_toda_pop()
+            self.gera_populacao()
             print(self.populacao["AVAL"])
-            historico_avaliacoes.append(self.populacao)
+            historico_avaliacoes.append(copy.deepcopy(self.populacao))
 
         return historico_avaliacoes
     

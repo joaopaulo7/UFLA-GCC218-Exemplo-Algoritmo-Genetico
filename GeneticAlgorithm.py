@@ -13,19 +13,53 @@ class GeneticAlgorithm:
         self.x_max = x_max
         self.num_indiv = num_indiv
         
-        self.populacao = []
+        self.populacao = {"CROMO": self.gera_populacao_inicial(), "AVAL": []}
+
+
+    def avalia_toda_pop(self):
+        avaliacao = []
+        for pop in self.populacao["CROMO"]:
+            avaliacao.append(self.avalia_x(GeneticAlgorithm.decoda_binario(pop)))
+        self.populacao["AVAL"] = avaliacao
         
-        self.populacao = {"CROMO": self.gera_populacao_inicial(), "AVAL": [0]*num_indiv}
-
-
+    
     def gera_populacao_inicial(self):
         lista = []
         for i in range(self.num_indiv):
             lista.append(random.choices([0, 1], k = 5))
         return lista
 
-    #def gera_populacao():
+    def torneio(self):
+        index_first = random.choice(range(self.num_indiv))
+        index_second = random.choice(range(self.num_indiv))
 
+        if(self.populacao["AVAL"][index_first] > self.populacao["AVAL"][index_second]):
+            return self.populacao["CROMO"][index_first]
+        else:
+            return self.populacao["CROMO"][index_second]
+    
+    
+    def gera_populacao(self):
+        nova_geracao = []
+        while(len(nova_geracao) < self.num_indiv):
+            pai = self.torneio()
+            mae = self.torneio()
+            filho1 = pai
+            filho2 = mae
+            
+            if(random.random() < self.taxa_cross):
+                filho1, filho2 = self.crossover(pai, mae, 5)
+            
+
+            if(random.random() < self.taxa_mut):
+                self.mutacao(filho1, 5)
+
+            if(random.random() < self.taxa_mut):
+                self.mutacao(filho2, 5)
+            
+            nova_geracao = nova_geracao + [filho1, filho2]
+        
+        self.populacao["CROMO"] = nova_geracao
 
     @staticmethod
     def decoda_binario(num_bin):
@@ -41,18 +75,18 @@ class GeneticAlgorithm:
   
     def avalia_x(self, x):
         if(x < self.x_min or x > self.x_max):
-            return 0
+            return False
         else:
             return x**2 - 3*x + 4 
 
     @staticmethod
-    def crossover(indiv_um, indv_2, tam_bit):
+    def crossover(indiv_um, indv_dois, tam_bit):
         corte = random.choice(range(1, tam_bit-1))
 
         primeira_parte_1 = indiv_um[:corte]
-        segunda_parte_1 = indv_2[corte:]
+        segunda_parte_1 = indv_dois[corte:]
         primeira_parte_2 = indiv_um[:corte]
-        segunda_parte_2 = indv_2[:corte]
+        segunda_parte_2 = indv_dois[:corte]
 
         filho_1 = primeira_parte_1 + segunda_parte_1
         filho_2 = primeira_parte_2 + segunda_parte_2

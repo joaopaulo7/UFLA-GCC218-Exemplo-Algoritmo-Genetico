@@ -5,4 +5,6 @@ Este projeto foi criado como um trabalho da disciplina de Inteligência Artifici
 
 * Foi utilizada a linguagem Python e as bibliotecas random, copy, numpy e matplotlib (3.5.2).
 
+
+<hr>
 Recomenda-se executar direto do terminal para o funcionamento dos componetes de GUI.

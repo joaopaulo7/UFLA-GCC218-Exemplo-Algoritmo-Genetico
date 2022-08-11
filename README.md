@@ -7,4 +7,5 @@ Este projeto foi criado como um trabalho da disciplina de Inteligência Artifici
 
 
 <hr>
+<br>
 Recomenda-se executar direto do terminal para o funcionamento dos componetes de GUI.
